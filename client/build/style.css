@@ -1,0 +1,9 @@
+p {
+  color: white;
+}
+
+body {
+  margin: 10px;
+  background-color: rgb(128, 140, 190);
+  font-family: helvetica;
+}

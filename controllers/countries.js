@@ -27,7 +27,8 @@ countryRouter.get("/", function(req, res) {
 
 //add new countries
 countryRouter.post('/', function(req, res) {
-  var country = {name: "my object"};
+  var country = req.body;
+  console.log(req.body);
   query.add(country, function(results){
     res.json(results)
   })

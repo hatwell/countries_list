@@ -11,6 +11,7 @@ CountryQuery.prototype = {
     MongoClient.connect(this.url, function(err, db) {
       if (db) {
         var collection = db.collection("countries");
+        console.log(countryToAdd);
         collection.insert(countryToAdd);
         collection.find().toArray(function(err, docs) {
           console.log(docs);
@@ -30,5 +31,6 @@ CountryQuery.prototype = {
       }
     });
   }
+}
 
 module.exports = CountryQuery;

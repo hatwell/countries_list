@@ -5,13 +5,14 @@ var CountryQuery = function () {
   this.url = 'mongodb://localhost:27017/bucket_list'
 }
 
-CountryQuery.protoype = {
-  add: function(countryToAdd, onQueryFinished){
-    MongoClient.connect(this.url, function (err, db) {
+CountryQuery.prototype = {
+
+  add: function(countryToAdd, onQueryFinished) {
+    MongoClient.connect(this.url, function(err, db) {
       if (db) {
-        var collection = db.collection('countries');
+        var collection = db.collection("countries");
         collection.insert(countryToAdd);
-        collection.find().toArray(function (err, doc){
+        collection.find().toArray(function(err, docs) {
           console.log(docs);
           onQueryFinished(docs);
         });
@@ -19,14 +20,15 @@ CountryQuery.protoype = {
     });
   },
 
-  all: function (onQueryFinished){
-    MongoClient.connect(this.url, function (err, db) {
+  all: function(onQueryFinished) {
+    MongoClient.connect(this.url, function(err, db) {
       if (db) {
-        var collection = db.collection('countries');
-        collection.find().toArray(function (err, docs) {
+        var collection = db.collection("countries");
+        collection.find().toArray(function(err, docs) {
           onQueryFinished(docs);
         });
       }
     });
   }
-}
+
+module.exports = CountryQuery;
